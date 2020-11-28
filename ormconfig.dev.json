@@ -1,12 +1,12 @@
 [
   {
     "name": "default",
-    "type": "",
+    "type": "postgres",
     "host": "localhost",
     "port": 5432,
     "username": "postgres",
     "password": "",
-    "database": "gostack_gobarber",
+    "database": "gobarber",
     "entities": [
       "./src/modules/**/infra/typeorm/entities/*.ts"
     ],
@@ -20,9 +20,9 @@
   {
     "name": "mongo",
     "type": "mongodb",
-    "host": "",
+    "host": "localhost",
     "port": 27017,
-    "database": "gostack_gobarber",
+    "database": "gobarber",
     "useUnifiedTopology": true,
     "entities": [
       "./src/modules/**/infra/typeorm/schemas/*.ts"
