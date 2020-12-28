@@ -40,7 +40,7 @@ class CreateUserService {
       password: hashedPassword,
     });
 
-    this.cacheProvider.invalidatePrefix('providers-list');
+    this.cacheProvider.invalidatePrefix('providers');
 
     return user;
   }
