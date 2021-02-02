@@ -33,7 +33,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           timeout: 6000s
           source: ".,!node_modules"
-          target: "~/app/rocketseat_gobarber_api"
+          target: "~/app/api.gobarber.danielbackes.dev"
 
       - name: Install dependencies on the server
         uses: appleboy/ssh-action@master
@@ -44,7 +44,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           timeout: 6000s
           script: |
-            cd ~/app/rocketseat_gobarber_api
+            cd ~/app/api.gobarber.danielbackes.dev
             yarn
 
       - name: Run migrations on the server
@@ -56,7 +56,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           timeout: 6000s
           script: |
-            cd ~/app/rocketseat_gobarber_api
+            cd ~/app/api.gobarber.danielbackes.dev
             ./node_modules/.bin/typeorm migration:run
 
       - name: Restart pm2 on the server
@@ -67,4 +67,4 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_KEY }}
           timeout: 6000s
-          script: pm2 restart gobarber-api
+          script: pm2 restart api.gobarber.danielbackes.dev

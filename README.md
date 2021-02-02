@@ -4,7 +4,7 @@ Project developed copying the instructor coding during the Rocketseat Bootcamp C
 
 This is the API to support a project that will manage barbershop scheduling.
 
-![Build status](https://github.com/danielbackes/rocketseat_gobarber_api/workflows/Delivery%20on%20production/badge.svg)
+![Build status](https://github.com/danielbackes/rocketseat-gobarber-api/workflows/Delivery%20on%20production/badge.svg)
 
 ## Test Coverage Report (Jest library)
 
