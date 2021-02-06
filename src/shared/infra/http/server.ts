@@ -19,6 +19,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/files', express.static(uploadConfig.uploadsFolder));
 app.use(rateLimiter); // After files to not limit files request
+app.get('/', (request: Request, response: Response) => response.json({ 'API': 'GoBarber' }));
 app.use(routes);
 
 app.use(errors());
