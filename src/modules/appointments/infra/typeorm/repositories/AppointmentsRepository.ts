@@ -3,6 +3,7 @@ import { getRepository, Raw, Repository } from 'typeorm';
 import Appointment from '@modules/appointments/infra/typeorm/entities/Appointment';
 import IAppointmentsRepository from '@modules/appointments/repositories/IAppointmentsRepository';
 import ICreateAppointmentDTO from '@modules/appointments/dtos/ICreateAppointmentDTO';
+import IFindAllFromUserDTO from '@modules/appointments/dtos/IFindAllFromUserDTO';
 import IFindAllInMonthFromProviderDTO from '@modules/appointments/dtos/IFindAllInMonthFromProviderDTO';
 import IFindAllInDayFromProviderDTO from '@modules/appointments/dtos/IFindAllInDayFromProviderDTO';
 
@@ -11,6 +12,22 @@ class AppointmentsRepository implements IAppointmentsRepository {
 
   constructor() {
     this.ormRepository = getRepository(Appointment);
+  }
+
+  public async create({
+    provider_id,
+    user_id,
+    date,
+  }: ICreateAppointmentDTO): Promise<Appointment> {
+    const appointment = this.ormRepository.create({
+      provider_id,
+      user_id,
+      date,
+    });
+
+    await this.ormRepository.save(appointment);
+
+    return appointment;
   }
 
   public async findByDate(
@@ -67,20 +84,17 @@ class AppointmentsRepository implements IAppointmentsRepository {
     return appointments;
   }
 
-  public async create({
-    provider_id,
+  public async findAllFromUser({
     user_id,
-    date,
-  }: ICreateAppointmentDTO): Promise<Appointment> {
-    const appointment = this.ormRepository.create({
-      provider_id,
-      user_id,
-      date,
+  }: IFindAllFromUserDTO): Promise<Appointment[]> {
+    const appointments = await this.ormRepository.find({
+      where: {
+        user_id,
+      },
+      relations: ['provider'],
     });
 
-    await this.ormRepository.save(appointment);
-
-    return appointment;
+    return appointments;
   }
 }
 

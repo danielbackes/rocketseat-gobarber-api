@@ -4,10 +4,12 @@ import { celebrate, Segments, Joi } from 'celebrate';
 import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 import AppointmentsController from '@modules/appointments/infra/http/controllers/AppointmentsController';
 import ProviderAppointmentsController from '@modules/appointments/infra/http/controllers/ProviderAppointmentsController';
+import UserAppointmentsController from '@modules/appointments/infra/http/controllers/UserAppointmentsController';
 
 const appointmentsRouter = Router();
 const appointmentsController = new AppointmentsController();
 const providerAppointmentsController = new ProviderAppointmentsController();
+const userAppointmentsController = new UserAppointmentsController();
 
 appointmentsRouter.use(ensureAuthenticated);
 
@@ -21,8 +23,9 @@ appointmentsRouter.post(
   }),
   appointmentsController.create,
 );
+
 appointmentsRouter.get(
-  '/me',
+  '/provider/me',
   celebrate({
     [Segments.QUERY]: {
       day: Joi.number().required(),
@@ -31,6 +34,11 @@ appointmentsRouter.get(
     },
   }),
   providerAppointmentsController.index,
+);
+
+appointmentsRouter.get(
+  '/user/me',
+  userAppointmentsController.index,
 );
 
 export default appointmentsRouter;

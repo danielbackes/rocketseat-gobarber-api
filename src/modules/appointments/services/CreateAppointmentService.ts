@@ -76,6 +76,10 @@ class CreateAppointmentService {
       )}`,
     );
 
+    await this.cacheProvider.invalidate(
+      `user-appointments:${user_id}`,
+    );
+
     return appointment;
   }
 }
