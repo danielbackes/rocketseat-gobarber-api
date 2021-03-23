@@ -52,6 +52,7 @@ This is the API to support a project that will manage barbershop scheduling.
 
 ### Public endpoints
 
+Create a user.
 ``` json
 {
   "post": "/users",
@@ -77,6 +78,8 @@ This is the API to support a project that will manage barbershop scheduling.
   }
 }
 ```
+
+Start the password recovery process.
 ``` json
 {
   "post": "/passwords/forgot",
@@ -93,6 +96,8 @@ This is the API to support a project that will manage barbershop scheduling.
   }
 }
 ```
+
+Create a new password.
 ``` json
 {
   "post": "/passwords/reset",
@@ -114,6 +119,7 @@ This is the API to support a project that will manage barbershop scheduling.
 
 ### Protected endpoints
 
+Update the user avatar image.
 ``` json
 {
   "patch": "/users/avatar",
@@ -139,6 +145,8 @@ This is the API to support a project that will manage barbershop scheduling.
   }
 }
 ```
+
+Get the user profile.
 ``` json
 {
   "get": "/profile",
@@ -160,9 +168,11 @@ This is the API to support a project that will manage barbershop scheduling.
   }
 }
 ```
+
+Get provider appointments of some day.
 ``` json
 {
-  "get": "/appointments/me",
+  "get": "/appointments/provider/me",
   "request": {
     "headers": {
       "Authorization": "Bearer <token>",
@@ -197,6 +207,42 @@ This is the API to support a project that will manage barbershop scheduling.
   }
 }
 ```
+
+Get user appointments.
+``` json
+{
+  "get": "/appointments/user/me",
+  "request": {
+    "headers": {
+      "Authorization": "Bearer <token>",
+      "Content-Type": "application/json"
+    },
+  },
+  "response": {
+    "200": [
+      {
+        "id": "string",
+        "provider_id": "string",
+        "user_id": "string",
+        "date": "Timestamp ISO-8601",
+        "created_at": "Timestamp ISO-8601",
+        "updated_at": "Timestamp ISO-8601",
+        "provider": {
+          "id": "string",
+          "name": "string",
+          "email": "string",
+          "avatar": "string",
+          "created_at": "Timestamp ISO-8601",
+          "updated_at": "Timestamp ISO-8601",
+          "avatar_url": "string"
+        }
+      }
+    ]
+  }
+}
+```
+
+Create an appointment.
 ``` json
 {
   "post": "/appointments",
@@ -222,6 +268,8 @@ This is the API to support a project that will manage barbershop scheduling.
   }
 }
 ```
+
+Get all providers except the own user.
 ``` json
 {
   "get": "/providers",
@@ -245,6 +293,8 @@ This is the API to support a project that will manage barbershop scheduling.
   }
 }
 ```
+
+Get the provider availability in each day of some month.
 ``` json
 {
   "get": "/providers/:id/month-availability",
@@ -268,6 +318,8 @@ This is the API to support a project that will manage barbershop scheduling.
   }
 }
 ```
+
+Get the provider availability in each hour of some day.
 ``` json
 {
   "get": "/providers/:id/day-availability",
