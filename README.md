@@ -1,198 +1,32 @@
-# GoBarber API
+<div align="center">
+	<h1>GoBarber API 💈</h1>
+</div>
 
-Project developed copying the instructor coding during the Rocketseat Bootcamp Course.
+GoBarber API to manage barbershop scheduling, developed copying the instructor coding during the [Rocketseat's](https://rocketseat.com.br) GoStack Course.
 
-This is the API to support a project that will manage barbershop scheduling.
-
-#### Code
-![dependency version](https://img.shields.io/badge/Node%20JS-^14.15.4-blue?style=for-the-badge)
-![GitHub top language](https://img.shields.io/github/languages/top/danielbackes/rocketseat-gobarber-api?style=for-the-badge)
-
-#### Monitoring
-![Website](https://img.shields.io/website?label=API&style=for-the-badge&url=https%3A%2F%2Fapi.gobarber.danielbackes.dev)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/danielbackes/rocketseat-gobarber-api/Delivery%20on%20production?style=for-the-badge)
-
-## Test Coverage Report (Jest library)
-
-  ![SignIn](readme/screenshot-1.png)
-  ![SignIn](readme/screenshot-2.png)
-
-## API Documentation
-
-### Authentication
-
-``` json
-{
-  "post": "/sessions",
-  "request": {
-    "headers": {
-      "Content-Type": "application/json"
-    },
-    "data": {
-      "email": "string",
-      "password": "string"
-    }
-  },
-  "response": {
-    "200": {
-      "user": {
-        "id": "string",
-        "name": "string",
-        "email": "string",
-        "avatar": "string",
-        "created_at": "Timestamp ISO-8601",
-        "updated_at": "Timestamp ISO-8601",
-        "avatar_url": "string"
-      },
-      "token": "string"
-    }
-  }
-}
-```
+## 📝 Features
 
 ### Public endpoints
 
-Create a user.
-``` json
-{
-  "post": "/users",
-  "request": {
-    "headers": {
-      "Content-Type": "application/json"
-    },
-    "data": {
-      "name": "string",
-      "email": "string",
-      "password": "string"
-    }
-  },
-  "response": {
-    "200": {
-      "id": "string",
-      "name": "string",
-      "email": "string",
-      "created_at": "Timestamp ISO-8601",
-      "updated_at": "Timestamp ISO-8601",
-      "avatar_url": null
-    }
-  }
-}
-```
+<details>
+  <summary>
+    Authentication
+  </summary>
 
-Start the password recovery process.
-``` json
-{
-  "post": "/passwords/forgot",
-  "request": {
-    "headers": {
-      "Content-Type": "application/json"
+  ``` json
+  {
+    "post": "/sessions",
+    "request": {
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "data": {
+        "email": "string",
+        "password": "string"
+      }
     },
-    "data": {
-      "email": "string"
-    }
-  },
-  "response": {
-    "204": {}
-  }
-}
-```
-
-Create a new password.
-``` json
-{
-  "post": "/passwords/reset",
-  "request": {
-    "headers": {
-      "Content-Type": "application/json"
-    },
-    "data": {
-      "token": "string",
-      "password": "string",
-      "password_confirmation": "string"
-    }
-  },
-  "response": {
-    "204": {}
-  }
-}
-```
-
-### Protected endpoints
-
-Update the user avatar image.
-``` json
-{
-  "patch": "/users/avatar",
-  "request": {
-    "headers": {
-      "Authorization": "Bearer <token>",
-      "Content-Type": "multipart/form-data"
-    },
-    "data": {
-      "avatar": "file",
-    }
-  },
-  "response": {
-    "200": {
-      "id": "string",
-      "name": "string",
-      "email": "string",
-      "avatar": "string",
-      "created_at": "Timestamp ISO-8601",
-      "updated_at": "Timestamp ISO-8601",
-      "avatar_url": "string"
-    }
-  }
-}
-```
-
-Get the user profile.
-``` json
-{
-  "get": "/profile",
-  "request": {
-    "headers": {
-      "Authorization": "Bearer <token>"
-    },
-  },
-  "response": {
-    "200": {
-      "id": "string",
-      "name": "string",
-      "email": "string",
-      "avatar": "string",
-      "created_at": "Timestamp ISO-8601",
-      "updated_at": "Timestamp ISO-8601",
-      "avatar_url": "string"
-    }
-  }
-}
-```
-
-Get provider appointments of some day.
-``` json
-{
-  "get": "/appointments/provider/me",
-  "request": {
-    "headers": {
-      "Authorization": "Bearer <token>",
-      "Content-Type": "application/json"
-    },
-    "data": {
-      "year": "integer",
-      "month": "integer",
-      "day": "integer"
-    }
-  },
-  "response": {
-    "200": [
-      {
-        "id": "string",
-        "provider_id": "string",
-        "user_id": "string",
-        "date": "Timestamp ISO-8601",
-        "created_at": "Timestamp ISO-8601",
-        "updated_at": "Timestamp ISO-8601",
+    "response": {
+      "200": {
         "user": {
           "id": "string",
           "name": "string",
@@ -201,86 +35,115 @@ Get provider appointments of some day.
           "created_at": "Timestamp ISO-8601",
           "updated_at": "Timestamp ISO-8601",
           "avatar_url": "string"
-        }
+        },
+        "token": "string"
       }
-    ]
+    }
   }
-}
-```
+  ```
+</details>
 
-Get user appointments.
-``` json
-{
-  "get": "/appointments/user/me",
-  "request": {
-    "headers": {
-      "Authorization": "Bearer <token>",
-      "Content-Type": "application/json"
+<details>
+  <summary>
+    Create user
+  </summary>
+
+  ``` json
+  {
+    "post": "/users",
+    "request": {
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "data": {
+        "name": "string",
+        "email": "string",
+        "password": "string"
+      }
     },
-  },
-  "response": {
-    "200": [
-      {
+    "response": {
+      "200": {
         "id": "string",
-        "provider_id": "string",
-        "user_id": "string",
-        "date": "Timestamp ISO-8601",
+        "name": "string",
+        "email": "string",
         "created_at": "Timestamp ISO-8601",
         "updated_at": "Timestamp ISO-8601",
-        "provider": {
-          "id": "string",
-          "name": "string",
-          "email": "string",
-          "avatar": "string",
-          "created_at": "Timestamp ISO-8601",
-          "updated_at": "Timestamp ISO-8601",
-          "avatar_url": "string"
-        }
+        "avatar_url": null
       }
-    ]
+    }
   }
-}
-```
+  ```
+</details>
 
-Create an appointment.
-``` json
-{
-  "post": "/appointments",
-  "request": {
-    "headers": {
-      "Authorization": "Bearer <token>",
-      "Content-Type": "application/json"
+<details>
+  <summary>
+    Start the password recovery process
+  </summary>
+
+  ``` json
+  {
+    "post": "/passwords/forgot",
+    "request": {
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "data": {
+        "email": "string"
+      }
     },
-    "data": {
-      "provider_id": "string",
-      "date": "Timestamp ISO-8601"
-    }
-  },
-  "response": {
-    "200": {
-      "id": "string",
-      "provider_id": "string",
-      "user_id": "string",
-      "date": "Timestamp ISO-8601",
-      "created_at": "Timestamp ISO-8601",
-      "updated_at": "Timestamp ISO-8601"
+    "response": {
+      "204": {}
     }
   }
-}
-```
+  ```
+</details>
 
-Get all providers except the own user.
-``` json
-{
-  "get": "/providers",
-  "request": {
-    "headers": {
-      "Authorization": "Bearer <token>",
+<details>
+  <summary>
+    Create new password
+  </summary>
+
+  ``` json
+  {
+    "post": "/passwords/reset",
+    "request": {
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "data": {
+        "token": "string",
+        "password": "string",
+        "password_confirmation": "string"
+      }
+    },
+    "response": {
+      "204": {}
     }
-  },
-  "response": {
-    "200": [
-      {
+  }
+  ```
+</details>
+
+### Protected endpoints
+
+<details>
+  <summary>
+    Update the user avatar image
+  </summary>
+
+  ``` json
+  {
+    "patch": "/users/avatar",
+    "request": {
+      "headers": {
+        "Authorization": "Bearer <token>",
+        "Content-Type": "multipart/form-data"
+      },
+      "data": {
+        "avatar": "file",
+      }
+    },
+    "response": {
+      "200": {
         "id": "string",
         "name": "string",
         "email": "string",
@@ -289,81 +152,321 @@ Get all providers except the own user.
         "updated_at": "Timestamp ISO-8601",
         "avatar_url": "string"
       }
-    ]
-  }
-}
-```
-
-Get the provider availability in each day of some month.
-``` json
-{
-  "get": "/providers/:id/month-availability",
-  "request": {
-    "headers": {
-      "Authorization": "Bearer <token>",
-      "Content-Type": "application/json"
-    },
-    "data": {
-      "month": "integer",
-      "year": "integer"
     }
-  },
-  "response": {
-    "200": [
-      {
+  }
+  ```
+</details>
+
+<details>
+  <summary>
+    Get the user profile
+  </summary>
+
+  ``` json
+  {
+    "get": "/profile",
+    "request": {
+      "headers": {
+        "Authorization": "Bearer <token>"
+      },
+    },
+    "response": {
+      "200": {
+        "id": "string",
+        "name": "string",
+        "email": "string",
+        "avatar": "string",
+        "created_at": "Timestamp ISO-8601",
+        "updated_at": "Timestamp ISO-8601",
+        "avatar_url": "string"
+      }
+    }
+  }
+  ```
+</details>
+
+<details>
+  <summary>
+    Get provider appointments of a day
+  </summary>
+
+  ``` json
+  {
+    "get": "/appointments/provider/me",
+    "request": {
+      "headers": {
+        "Authorization": "Bearer <token>",
+        "Content-Type": "application/json"
+      },
+      "data": {
+        "year": "integer",
+        "month": "integer",
+        "day": "integer"
+      }
+    },
+    "response": {
+      "200": [
+        {
+          "id": "string",
+          "provider_id": "string",
+          "user_id": "string",
+          "date": "Timestamp ISO-8601",
+          "created_at": "Timestamp ISO-8601",
+          "updated_at": "Timestamp ISO-8601",
+          "user": {
+            "id": "string",
+            "name": "string",
+            "email": "string",
+            "avatar": "string",
+            "created_at": "Timestamp ISO-8601",
+            "updated_at": "Timestamp ISO-8601",
+            "avatar_url": "string"
+          }
+        }
+      ]
+    }
+  }
+  ```
+</details>
+
+<details>
+  <summary>
+    Get user appointments
+  </summary>
+
+  ``` json
+  {
+    "get": "/appointments/user/me",
+    "request": {
+      "headers": {
+        "Authorization": "Bearer <token>",
+        "Content-Type": "application/json"
+      },
+    },
+    "response": {
+      "200": [
+        {
+          "id": "string",
+          "provider_id": "string",
+          "user_id": "string",
+          "date": "Timestamp ISO-8601",
+          "created_at": "Timestamp ISO-8601",
+          "updated_at": "Timestamp ISO-8601",
+          "provider": {
+            "id": "string",
+            "name": "string",
+            "email": "string",
+            "avatar": "string",
+            "created_at": "Timestamp ISO-8601",
+            "updated_at": "Timestamp ISO-8601",
+            "avatar_url": "string"
+          }
+        }
+      ]
+    }
+  }
+  ```
+</details>
+
+<details>
+  <summary>
+    Create an appointment
+  </summary>
+
+  ``` json
+  {
+    "post": "/appointments",
+    "request": {
+      "headers": {
+        "Authorization": "Bearer <token>",
+        "Content-Type": "application/json"
+      },
+      "data": {
+        "provider_id": "string",
+        "date": "Timestamp ISO-8601"
+      }
+    },
+    "response": {
+      "200": {
+        "id": "string",
+        "provider_id": "string",
+        "user_id": "string",
+        "date": "Timestamp ISO-8601",
+        "created_at": "Timestamp ISO-8601",
+        "updated_at": "Timestamp ISO-8601"
+      }
+    }
+  }
+  ```
+</details>
+
+<details>
+  <summary>
+    Get all providers except the own user
+  </summary>
+
+  ``` json
+  {
+    "get": "/providers",
+    "request": {
+      "headers": {
+        "Authorization": "Bearer <token>",
+      }
+    },
+    "response": {
+      "200": [
+        {
+          "id": "string",
+          "name": "string",
+          "email": "string",
+          "avatar": "string",
+          "created_at": "Timestamp ISO-8601",
+          "updated_at": "Timestamp ISO-8601",
+          "avatar_url": "string"
+        }
+      ]
+    }
+  }
+  ```
+</details>
+
+<details>
+  <summary>
+    Get the provider availability in each day of a month
+  </summary>
+
+  ``` json
+  {
+    "get": "/providers/:id/month-availability",
+    "request": {
+      "headers": {
+        "Authorization": "Bearer <token>",
+        "Content-Type": "application/json"
+      },
+      "data": {
+        "month": "integer",
+        "year": "integer"
+      }
+    },
+    "response": {
+      "200": [
+        {
+          "day": "integer",
+          "available": "boolean"
+        }
+      ]
+    }
+  }
+  ```
+</details>
+
+<details>
+  <summary>
+    Get the provider availability in each hour of a day
+  </summary>
+
+  ``` json
+  {
+    "get": "/providers/:id/day-availability",
+    "request": {
+      "headers": {
+        "Authorization": "Bearer <token>",
+        "Content-Type": "application/json"
+      },
+      "data": {
         "day": "integer",
-        "available": "boolean"
+        "month": "integer",
+        "year": "integer"
       }
-    ]
-  }
-}
-```
-
-Get the provider availability in each hour of some day.
-``` json
-{
-  "get": "/providers/:id/day-availability",
-  "request": {
-    "headers": {
-      "Authorization": "Bearer <token>",
-      "Content-Type": "application/json"
     },
-    "data": {
-      "day": "integer",
-      "month": "integer",
-      "year": "integer"
+    "response": {
+      "200": [
+        {
+          "hour": "integer",
+          "available": "boolean"
+        }
+      ]
     }
-  },
-  "response": {
-    "200": [
-      {
-        "hour": "integer",
-        "available": "boolean"
-      }
-    ]
   }
-}
-```
+  ```
+</details>
 
-### Error response
+### Response Error
 
-``` json
-{
-  "response": {
+<details>
+  <summary>
+    Generic error
+  </summary>
+
+  ``` json
+  {
     "400": {
       "status": "error",
       "message": "string"
     },
+  }
+  ```
+</details>
+
+<details>
+  <summary>
+    Too many requests
+  </summary>
+
+  ``` json
+  {
     "429": {
       "status": "error",
       "message": "Too many requests"
     }
   }
-}
+  ```
+</details>
+
+### Routes
+- [Download here](./readme/insomnia.json), and import it in [Insomnia](https://insomnia.rest/)
+
+## 🧰 Main languages and libraries
+![Github top language](https://img.shields.io/github/languages/top/danielbackes/rocketseat-gobarber-api?style=for-the-badge)
+
+![Fixed lib](https://img.shields.io/badge/Node%20JS-^12.18.0-blue?style=for-the-badge)
+![Fixed lib](https://img.shields.io/badge/Express-^4.17.1-blue?style=for-the-badge)
+![Fixed lib](https://img.shields.io/badge/TypeORM-^0.2.25-blue?style=for-the-badge)
+
+
+## 🚀 Publishing
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/danielbackes/rocketseat-gobarber-api/Delivery%20on%20production?style=for-the-badge)
+![Website](https://img.shields.io/website?label=API&style=for-the-badge&url=https%3A%2F%2Fapi.gobarber.danielbackes.dev)
+
+## 🧪 Test Coverage Report (Jest library)
+
+  ![Image](readme/test-coverage-1.png)
+  ![Image](readme/test-coverage-2.png)
+
+## ⚙️ Setup
+
+1. Environment:
+ - NodeJS: v12.18.0
+ - Yarn: v1.22.5
+
+2. Project
+```
+# clone this repo
+$ git clone https://github.com/danielbackes/rocketseat-gobarber-api.git
+
+# go to project folder
+$ cd rocketseat-gobarber-api
+
+# install dependencies
+$ yarn install
+
+# Config the environment variables on .env file
+
+# Start the development environment
+$ yarn dev:server
 ```
 
-
-## What I learned or did in this project?
+## 📖 Main concepts that I learned in this project
   - User authentication using JWT.
   - How connect with Postgres using TypeOrm component.
   - How structure applications follow some SOLID principles.
@@ -381,3 +484,6 @@ Get the provider availability in each hour of some day.
   - Created the storage provider to upload file to AmazonAWS S3.
   - Created the cache provider that use Redis as cache storage.
   - Using the same Redis as storage, limited the number of requests per second using RateLimiterFlexible library.
+  - Create Github actions to build and deploy to the server.
+  - Config Nginx and PM2 on DigitalOcean Server to delivery a NodeJS application.
+  - Create SSL certification with certbot tools.
