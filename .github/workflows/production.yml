@@ -32,20 +32,8 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_KEY }}
           timeout: 6000s
-          source: ".,!node_modules"
+          source: "."
           target: "~/app/api.gobarber.danielbackes.dev"
-
-      - name: Install dependencies on the server
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          port: ${{ secrets.SSH_PORT }}
-          key: ${{ secrets.SSH_KEY }}
-          timeout: 6000s
-          script: |
-            cd ~/app/api.gobarber.danielbackes.dev
-            yarn
 
       - name: Run migrations on the server
         uses: appleboy/ssh-action@master
